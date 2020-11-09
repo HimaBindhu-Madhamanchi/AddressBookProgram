@@ -205,23 +205,18 @@ class AddressBook
         String option;
         do 
         {
-            System.out.println("enter... S for SAVE  SA for SAVE AS      C for CANCEL");
+            System.out.println("enter... S for SAVE        C for CANCEL");
             option = scanner.nextLine();
-        } 
-        while (!(option.equals("s")  || option.equals("sa")) || option.equals("c"));
+        } while (!(option.equalsIgnoreCase("s")  || option.equalsIgnoreCase("c")));
         switch(option)
         {
             case "s":
+            case "S":
                 writeFile(contactName, newContent);
                 System.out.println(contactName + " is saved with new content");
                 break;
-            case "sa":
-                String extension = ".csv";
-                String newContactName = contactName.replaceFirst("[.][^.]+$", "") + extension;
-                writeFile(newContactName, newContent);
-                nonEmptyContacts.add(newContactName);
-                break;
             case "c":
+            case "C":
                 System.out.println("changes are not saved");
                 return;
             default:
@@ -230,3 +225,4 @@ class AddressBook
         
     }
 }
+
